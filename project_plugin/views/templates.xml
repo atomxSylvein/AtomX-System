@@ -6,6 +6,9 @@
 			<field name="model">project.project</field>
 			<field name="inherit_id" ref="project.edit_project"/>
 			<field name="arch" type="xml">
+				<field name="partner_id" position="attributes">
+					<attribute name="domain">[('is_company', '=', True)]</attribute>
+				</field>
 				<field name="partner_id" position="after">
 					<field name="m_typology"/>
 				</field>
