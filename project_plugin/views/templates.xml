@@ -6,7 +6,7 @@
 			<field name="model">project.project</field>
 			<field name="inherit_id" ref="project.edit_project"/>
 			<field name="arch" type="xml">
-				<field class="partner_id" position="after">
+				<field name="partner_id" position="after">
 					<field name="m_typology"/>
 				</field>
 				<field name="subtask_project_id" position="after">
