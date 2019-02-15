@@ -11,4 +11,4 @@ class ProjectPlugin(models.Model):
 	
 	_inherit = 'project.project'
 	m_description = fields.Text(string="Description du projet")
-	m_typology = fields.Selection(	[('4', 'Services Développement'), ('1', 'Services Intégration ServiceNow'), ('11', 'Services Intégration Odoo'), ('0', 'Autres')], string="Business Unit Service")
+	m_typology = fields.Selection(	[('4', 'Services Développement'), ('1', 'Services Intégration ServiceNow'), ('191', 'Services Intégration Odoo'), ('0', 'Autres')], string="Business Unit Service")
