@@ -1,0 +1,54 @@
+<odoo>
+	<data>
+		<!-- FORM VIEW -->
+		<record id="view_project_form_inherited" model="ir.ui.view">
+			<field name="name">Project Form Extension</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project.edit_project"/>
+			<field name="arch" type="xml">
+				<field name="partner_id" position="attributes">
+					<attribute name="domain">[('is_company', '=', True)]</attribute>
+				</field>
+				<field name="partner_id" position="after">
+					<field name="m_typology"/>
+				</field>
+				<field name="subtask_project_id" position="after">
+					<field name="m_description"/>
+				</field>
+			</field>
+		</record>
+
+		<!-- KANBAN VIEW -->
+		<record id="view_project_kanban_inherited" model="ir.ui.view">
+			<field name="name">Project Kanban Extension</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project.view_project_kanban"/>
+			<field name="arch" type="xml">
+				<field name="partner_id" position="after">
+					<field name="m_typology"/>
+				</field>
+				<div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click o_has_icon" position="attributes">
+					<attribute name="t-attf-class">#{kanban_color(record.m_typology.raw_value)} oe_kanban_global_click o_has_icon</attribute>
+				</div>
+				<span t-if="record.partner_id.value" position="after">
+					<br/><t t-esc="record.m_typology.value"/>
+				</span>
+			</field>
+		</record>
+
+		<!-- QUICK CREATE -->
+		<record id="view_project_quick_create_inherited" model="ir.ui.view">
+			<field name="name">Project Quick Create Extension</field>
+			<field name="model">project.project</field>
+			<field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<field name="partner_id" required="1" domain="[('is_company', '=', True)]"/>
+					<field name="m_typology"/>
+					<field name="m_description"/>
+				</field>
+			</field>
+		</record>
+
+	</data>
+</odoo>
