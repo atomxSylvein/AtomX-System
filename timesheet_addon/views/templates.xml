@@ -1,0 +1,54 @@
+<odoo>
+	<data>
+
+		<!-- View (Form) -->
+		<record id="timesheets_report_view" model="ir.ui.view">
+            <field name="name">timesheets_by_employee.timesheets_by_employee.form</field>
+            <field name="model">timesheets_by_employee.timesheets_by_employee</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+               <form>
+                    <group>
+                        <group string="Employé">
+                            <field name="m_employee"/>
+                        </group>
+                        <group string="Période">
+                            <field name="m_date_start"/>
+                            <field name="m_date_end"/>
+                        </group>
+                        <footer>
+                            <button string="Imprimer Timesheet" name="print_timesheet" type="object" class="btn-primary"/>
+                            <button string="Annuler" class="btn-default" special="cancel"/>
+                        </footer>
+                    </group>
+               </form>
+            </field>
+        </record>
+
+        <!-- Actions -->
+		<record id="action_print_timesheet" model="ir.actions.act_window">
+            <field name="name">Générer une feuille de temps</field>
+            <field name="res_model">timesheets_by_employee.timesheets_by_employee</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="timesheets_report_view"/>
+        </record>
+
+        <!-- Menu -->
+		<menuitem
+            id="print_timesheet_view"
+            name="Imprimer la feuille de style"
+            action="action_print_timesheet"/>
+
+        <!-- Report -->
+		<report
+			id="report_timesheet"
+			model="timesheets_by_employee.timesheets_by_employee"
+			string="Feuille de temps"
+			report_type="qweb-pdf"
+			name="timesheets_by_employee.report_timesheet"
+			file="timesheets_by_employee.report_timesheet"/>
+
+	</data>
+</odoo>
