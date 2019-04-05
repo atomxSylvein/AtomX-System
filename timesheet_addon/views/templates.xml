@@ -43,7 +43,7 @@
 
         <!-- Report -->
 		<report
-			id="report_timesheet"
+			id="action_report_timesheet"
 			model="timesheets_by_employee.timesheets_by_employee"
 			string="Feuille de temps"
 			report_type="qweb-pdf"

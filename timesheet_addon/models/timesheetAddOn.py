@@ -20,4 +20,4 @@ class TimesheetAddOn(models.Model):
 		#report_doc = report_obj.get_action(self.browse(data), 'timesheets_by_employee.report_timesheets', data=data)
 		#report_doc = report_obj._get_report_from_name('timesheets_by_employee.report_timesheets')
 
-		return self.env.ref('timesheets_by_employee.report_timesheet').report_action(self, data=data, config=False)
+		return self.env.ref('timesheets_by_employee.action_report_timesheet').report_action(self, data=data, config=False)
