@@ -10,7 +10,7 @@ class TimesheetAddOn(models.Model):
 	m_date_end = fields.Date(string="Date de fin", required=True)
 
 	@api.model
-    def print_timesheet(self, data):
+	def print_timesheet(self, data):
 		"""Redirects to the report with the values obtained from the wizard
 		'data['form']': name of employee and the date duration"""
 		rec = self.browse(data)
