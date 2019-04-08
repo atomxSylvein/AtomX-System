@@ -2,7 +2,7 @@ from odoo import models, fields, api
 
 class TimesheetAddOn(models.Model):
 
-	_name = 'timesheet_addon.timesheets_by_employee'
+	_name = 'timesheet_addon.tbe'
 	_description = 'Model to print timesheets'
 
 	m_employee = fields.Many2one('hr.employee', string="Employé", required=True)

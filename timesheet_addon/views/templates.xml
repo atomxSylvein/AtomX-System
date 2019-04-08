@@ -28,7 +28,7 @@
         <!-- Actions -->
 		<record id="action_print_timesheet" model="ir.actions.act_window">
             <field name="name">Générer une feuille de temps</field>
-            <field name="res_model">timesheets_by_employee.timesheets_by_employee</field>
+            <field name="res_model">timesheets_by_employee.tbe</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
             <field name="view_id" ref="timesheets_report_view"/>
