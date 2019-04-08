@@ -7,7 +7,8 @@
             model="timesheet_addon.tbe"
             string="Feuille de temps"
             report_type="qweb-pdf"
-            name="timesheet_addon.report_timesheet_template"/>
+            name="timesheet_addon.report_timesheet_template"
+            file="timesheet_addon.report_timesheet_template"/>
 
         <template id="report_timesheet_template">
             <t t-call="report.html_container">
