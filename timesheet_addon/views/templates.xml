@@ -3,8 +3,8 @@
 
 		<!-- View (Form) -->
 		<record id="timesheets_report_view" model="ir.ui.view">
-            <field name="name">timesheet_addon.timesheets_by_employee.form</field>
-            <field name="model">timesheet_addon.timesheets_by_employee</field>
+            <field name="name">timesheet_addon.tbe.form</field>
+            <field name="model">timesheet_addon.tbe</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                <form>
