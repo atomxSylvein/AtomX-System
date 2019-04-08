@@ -12,7 +12,7 @@
 
     'category': 'Tools',
 
-    'version': '0.1.4',
+    'version': '0.2.0',
 
     # any module necessary for this one to work correctly
     'depends': ['timesheet_grid', 'hr'],
@@ -20,7 +20,7 @@
     # always loaded
     'data': [
         'views/templates.xml',
-        'views/report.xml',
+        'reports/timesheet_report.xml',
     ],
     'installable': True,
     'auto_install': False,

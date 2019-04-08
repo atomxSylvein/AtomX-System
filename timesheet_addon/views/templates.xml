@@ -3,8 +3,8 @@
 
 		<!-- View (Form) -->
 		<record id="timesheets_report_view" model="ir.ui.view">
-            <field name="name">timesheets_by_employee.timesheets_by_employee.form</field>
-            <field name="model">timesheets_by_employee.timesheets_by_employee</field>
+            <field name="name">timesheet_addon.timesheets_by_employee.form</field>
+            <field name="model">timesheet_addon.timesheets_by_employee</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                <form>
@@ -17,7 +17,7 @@
                             <field name="m_date_end"/>
                         </group>
                         <footer>
-                            <button string="Imprimer Timesheet" name="print_timesheet" type="object" class="btn-primary"/>
+                            <button string="Imprimer la timesheet" name="print_timesheet" type="object" class="btn-primary"/>
                             <button string="Annuler" class="btn-default" special="cancel"/>
                         </footer>
                     </group>
@@ -37,18 +37,9 @@
         <!-- Menu -->
 		<menuitem
             id="print_timesheet_view"
-            name="Imprimer la feuille de style"
+            name="Imprimer une feuille de temps"
             action="action_print_timesheet"
             parent="hr_timesheet.menu_timesheets_reports"/>
-
-        <!-- Report -->
-		<report
-			id="action_report_timesheet"
-			model="timesheets_by_employee.timesheets_by_employee"
-			string="Feuille de temps"
-			report_type="qweb-pdf"
-			name="timesheets_by_employee.report_timesheet"
-			file="timesheets_by_employee.report_timesheet"/>
 
 	</data>
 </odoo>
