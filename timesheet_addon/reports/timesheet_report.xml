@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+
+        <!-- Report -->
+        <report
+            id="action_timesheet_report"
+            model="timesheet_addon.tbe"
+            string="Feuille de temps"
+            report_type="qweb-pdf"
+            name="timesheet_addon.report_timesheet_template"/>
+
+        <template id="report_timesheet_template">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <div class="page">
+                        <h2>Hello World !</h2>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
