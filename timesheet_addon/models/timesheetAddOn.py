@@ -29,14 +29,21 @@ class TimesheetAddOn(models.Model):
 		#Query preparation using ORM
 		timesheet_environment = self.env['account.analytic.line']
 
+		domain = [('employee_id', '=', int(rec.m_employee)), ('validated', '=', True)]
 		if rec.m_date_start and rec.m_date_end:
+			domain.append(('date', '>=', rec.m_date_start),('date', '<=', rec.m_date_end))
+		elif rec.m_date_start:
+			domain.append('date', '>=', rec.m_date_start)
+		elif docs.m_date_end:
+			domain.append('date', '<=', rec.m_date_end)
+		"""if rec.m_date_start and rec.m_date_end:
 			domain = [('employee_id', '=', int(rec.m_employee)), ('date', '>=', rec.m_date_start),('date', '<=', rec.m_date_end)]
 		elif rec.m_date_start:
 			domain = [('employee_id', '=', int(rec.m_employee)), ('date', '>=', rec.m_date_start)]
 		elif docs.m_date_end:
 			domain = [('employee_id', '=', int(rec.m_employee)), ('date', '<=', rec.m_date_end)]
 		else:
-			domain = [('employee_id', '=', int(rec.m_employee))]
+			domain = [('employee_id', '=', int(rec.m_employee))]"""
 
 		timesheets = timesheet_environment.search(domain, order='date asc')
 
