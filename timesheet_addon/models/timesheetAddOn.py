@@ -26,4 +26,4 @@ class TimesheetAddOn(models.Model):
 
 		data['timesheets'] = timesheet_environment.search(domain, order='date asc')
 
-		return self.env.ref('timesheet_addon.timesheet_report').report_action(self, data=data, config=False)
+		return self.env.ref('report.timesheet_addon.timesheet_report').report_action(self, data=data, config=False)
