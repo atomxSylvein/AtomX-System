@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_timesheet_addon_tbe,timesheet_addon.tbe,model_timesheet_addon_tbe,,1,1,1,1
-access_report_timesheet_addon_report_timesheets,report.timesheet_addon.report_timesheets,model_report_timesheet_addon_report_timesheets,,1,1,1,1
+access_report_timesheet_addon_report_timesheet_template,report.timesheet_addon.report_timesheet_template,model_report_timesheet_addon_report_timesheet_template,,1,1,1,1

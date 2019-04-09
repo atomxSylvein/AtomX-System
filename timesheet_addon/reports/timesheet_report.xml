@@ -13,9 +13,11 @@
         <template id="report_timesheet_template">
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
-                    <div class="page">
-                        <h2>Hello World !</h2>
-                    </div>
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <h2>Hello World !</h2>
+                        </div>
+                    </t>
                 </t>
             </t>
         </template>
