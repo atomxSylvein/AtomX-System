@@ -1,20 +1,29 @@
 from odoo import models, fields, api
 
-class TimesheetSettings(models.TransientModel):
+"""class TimesheetSettings(models.TransientModel):
 	_name = 'timesheet_addon.settings'
-	_inherit = 'res.config.settings'
+	_inherit = 'res.config.settings'"""
 
 class TimesheetAddOn(models.Model):
 
-	_name = 'timesheet_addon.tbe'
+	_name = 'timesheet_addon.settings'
 	_description = 'Model to print timesheets'
 
 	m_employee = fields.Many2one('hr.employee', string="Employé", required=True)
 	m_date_start = fields.Date(string="Date de début", required=True)
 	m_date_end = fields.Date(string="Date de fin", required=True)
-	m_config = fields.Many2one('timesheet_addon.settings', string="Configuration générale", readonly=True)
-	m_config_unit = fields.Many2one(related='m_config.timesheet_encode_uom_id', string="Encodage de la durée", readonly=True)
-	m_config_unit_name = fields.Char(related='m_config_unit.name', string="Unité de mesure", readonly=True)
+	#m_config = fields.Many2one('timesheet_addon.settings', string="Configuration générale", readonly=True)
+	#m_config_unit = fields.Many2one(related='m_config.timesheet_encode_uom_id', string="Encodage de la durée", readonly=True)
+	#m_config_unit_name = fields.Char(related='m_config_unit.name', string="Unité de mesure", readonly=True)
+	m_uom_name = fields.Char(compute="_compute_uom", string="Unité de mesure", readonly=True)
+	m_uom_factor = fields.Integer(string="Facteur de l'unité de mesure")
+
+	@api.model
+	def _compute_uom(self):
+		conf_environment = self.env['ir.config_parameter'].sudo()
+		config_uom = conf_environment.get_param('timesheet_encode_uom_id')[0]
+		uom_name = config_uom.name
+		self.m_uom_name = uom_name
 
 	@api.model
 	def print_timesheet(self, data):
