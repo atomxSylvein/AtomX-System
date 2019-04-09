@@ -7,12 +7,16 @@
             model="timesheet_addon.tbe"
             string="Feuille de temps"
             report_type="qweb-html"
-            name="timesheet_addon.report_timesheet_template"
-            file="timesheet_addon.report_timesheet_template"/>
+            name="timesheet_addon.timesheet_report"
+            file="timesheet_addon.timesheet_report"/>
 
-        <template id="report_timesheet_template">
+        <template id="timesheet_report">
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
+                    docs : <t t-esc="docs"/> <br/>
+                    docs_ids : <t t-esc="doc_ids"/> <br/>
+                    doc_model : <t t-esc="doc_model"/> <br/>
+                    data : <t t-esc="data"/> <br/>
                     <t t-foreach="docs" t-as="o">
                         <div class="page">
                             <h2>Hello World !</h2>
