@@ -20,5 +20,10 @@ class TimesheetAddOn(models.Model):
 		#report_obj = self.env['report']
 		#report_doc = report_obj.get_action(self.browse(data), 'timesheets_by_employee.report_timesheets', data=data)
 		#report_doc = report_obj._get_report_from_name('timesheets_by_employee.report_timesheets')
+		timesheet_environment = self.env['account.analytic.line']
+
+		domain = [('employee_id', '=', data['form']['m_employee'])]
+
+		data['timesheets'] = timesheet_environment.search(domain, order='date asc')
 
 		return self.env.ref('timesheet_addon.action_timesheet_report').report_action(self, data=data, config=False)
