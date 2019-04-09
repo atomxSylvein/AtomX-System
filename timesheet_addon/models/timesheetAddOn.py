@@ -12,18 +12,8 @@ class TimesheetAddOn(models.Model):
 	m_employee = fields.Many2one('hr.employee', string="Employé", required=True)
 	m_date_start = fields.Date(string="Date de début", required=True)
 	m_date_end = fields.Date(string="Date de fin", required=True)
-	#m_config = fields.Many2one('timesheet_addon.settings', string="Configuration générale", readonly=True)
-	#m_config_unit = fields.Many2one(related='m_config.timesheet_encode_uom_id', string="Encodage de la durée", readonly=True)
-	#m_config_unit_name = fields.Char(related='m_config_unit.name', string="Unité de mesure", readonly=True)
-	m_uom_name = fields.Char(compute="_compute_uom", string="Unité de mesure", readonly=True)
+	m_uom_name = fields.Selection([("day", "Jour(s)"), ("hour", "Heure(s)")], default='day', string="Unité de mesure", readonly=True)
 
-	@api.multi
-	def _compute_uom(self):
-		"""conf_environment = self.env['ir.config_parameter'].sudo()
-		config_uom = conf_environment.get_param('timesheet_encode_uom_id')[0]
-		uom_name = config_uom.name"""
-		for timesheet in self:
-			timesheet.m_uom_name = "Hello World !"
 
 
 	@api.model
@@ -54,16 +44,17 @@ class TimesheetAddOn(models.Model):
 		records = []
 		total = 0
 		for t in timesheets:
+			amount = t.unit_amount / t.product_uom_id.factor
 			vals = {'project': t.account_id.name,
-					'duration': t.unit_amount / t.product_uom_id.factor,
+					'duration': amount,
 					'task': t.task_id.name,
 					'description':t.name,
 					'date': t.date,}
-			total += t.unit_amount
+			total += amount
 			records.append(vals)
 
 		data['employee'] = rec.m_employee.name
-		data['unit'] = rec.m_uom_name
+		data['unit'] = m_uom_name
 		data['timesheets'] = records
 		data['total'] = total
 
