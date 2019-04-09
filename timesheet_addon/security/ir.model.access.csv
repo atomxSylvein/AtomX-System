@@ -1,3 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_timesheet_addon_tbe,timesheet_addon.tbe,model_timesheet_addon_tbe,,1,1,1,1
-access_timesheet_addon_settings,timesheet_addon.settings,model_timesheet_addon_settings,,1,0,0,0

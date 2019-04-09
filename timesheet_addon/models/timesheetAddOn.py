@@ -6,7 +6,7 @@ from odoo import models, fields, api
 
 class TimesheetAddOn(models.Model):
 
-	_name = 'timesheet_addon.settings'
+	_name = 'timesheet_addon.tbe'
 	_description = 'Model to print timesheets'
 
 	m_employee = fields.Many2one('hr.employee', string="Employé", required=True)
@@ -20,10 +20,13 @@ class TimesheetAddOn(models.Model):
 
 	@api.model
 	def _compute_uom(self):
-		conf_environment = self.env['ir.config_parameter'].sudo()
+		"""conf_environment = self.env['ir.config_parameter'].sudo()
 		config_uom = conf_environment.get_param('timesheet_encode_uom_id')[0]
 		uom_name = config_uom.name
-		self.m_uom_name = uom_name
+		for tao in self:
+			tao.m_uom_name = uom_name"""
+		self.m_uom_name = "Hello World !"
+
 
 	@api.model
 	def print_timesheet(self, data):
