@@ -22,7 +22,7 @@ class TimesheetAddOn(models.Model):
 		#report_doc = report_obj._get_report_from_name('timesheets_by_employee.report_timesheets')
 		timesheet_environment = self.env['account.analytic.line']
 
-		domain = [('employee_id', '=', data['form']['m_employee'])]
+		domain = [('employee_id', '=', rec.m_employee)]
 
 		data['timesheets'] = timesheet_environment.search(domain, order='date asc')
 
