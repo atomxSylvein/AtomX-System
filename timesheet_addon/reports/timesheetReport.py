@@ -19,5 +19,9 @@ class TimesheetReport(models.AbstractModel):
 		'doc_ids': docids,
 		'doc_model': model,
 		'data': data,
+		'timesheets':data['timesheets'],
+		'uom':data['unit'],
+		'employee':data['employee'],
+		'total':data['total']
 		'docs': docs
 		}
