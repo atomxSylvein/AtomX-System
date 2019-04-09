@@ -2,7 +2,7 @@ from odoo import models, fields, api
 
 class TimesheetReport(models.AbstractModel):
 
-	_name = 'report.timesheet_addon.timesheet_report'
+	_name = 'report.timesheet_addon.timesheet_report' 
 	_description = 'Monthly resource cost report'
 
 	@api.model
