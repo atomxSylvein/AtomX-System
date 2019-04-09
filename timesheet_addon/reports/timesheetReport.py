@@ -22,6 +22,6 @@ class TimesheetReport(models.AbstractModel):
 		'timesheets':data['timesheets'],
 		'uom':data['unit'],
 		'employee':data['employee'],
-		'total':data['total']
+		'total':data['total'],
 		'docs': docs
 		}
