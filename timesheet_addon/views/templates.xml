@@ -11,6 +11,7 @@
                     <group>
                         <group string="Employé">
                             <field name="m_employee"/>
+                            <field name="m_config_unit_name"/>
                         </group>
                         <group string="Période">
                             <field name="m_date_start"/>
