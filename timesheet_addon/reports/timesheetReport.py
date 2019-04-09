@@ -20,7 +20,7 @@ class TimesheetReport(models.AbstractModel):
 		'doc_model': model,
 		'data': data,
 		'timesheets':data['timesheets'],
-		'uom':data['unit'],
+		'uom':data['uom'],
 		'employee':data['employee'],
 		'total':data['total'],
 		'docs': docs
