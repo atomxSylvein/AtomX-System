@@ -32,7 +32,7 @@ class TimesheetAddOn(models.Model):
 			domain = [('employee_id', '=', int(rec.m_employee))]
 
 		timesheets = timesheet_environment.search(domain, order='date asc')
-
+		
 		#Data recording
 		records = []
 		total = 0
@@ -41,7 +41,7 @@ class TimesheetAddOn(models.Model):
 					'duration': t.unit_amount,
 					'task': t.task_id.name,
 					'description':t.name,
-					'date': r.date,}
+					'date': t.date,}
 			total += t.unit_amount
 			records.append(vals)
 
