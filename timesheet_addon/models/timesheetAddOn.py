@@ -54,7 +54,7 @@ class TimesheetAddOn(models.Model):
 			records.append(vals)
 
 		data['employee'] = rec.m_employee.name
-		data['uom'] = rec.m_uom_name[rec.m_uom_name]
+		data['uom'] = dict(rec._fields['m_uom_name'].selection).get(rec.m_uom_name)
 		data['timesheets'] = records
 		data['total'] = total
 
