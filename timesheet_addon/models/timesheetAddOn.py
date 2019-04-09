@@ -16,16 +16,14 @@ class TimesheetAddOn(models.Model):
 	#m_config_unit = fields.Many2one(related='m_config.timesheet_encode_uom_id', string="Encodage de la durée", readonly=True)
 	#m_config_unit_name = fields.Char(related='m_config_unit.name', string="Unité de mesure", readonly=True)
 	m_uom_name = fields.Char(compute="_compute_uom", string="Unité de mesure", readonly=True)
-	m_uom_factor = fields.Integer(string="Facteur de l'unité de mesure")
 
-	@api.model
+	@api.multi
 	def _compute_uom(self):
 		"""conf_environment = self.env['ir.config_parameter'].sudo()
 		config_uom = conf_environment.get_param('timesheet_encode_uom_id')[0]
-		uom_name = config_uom.name
-		for tao in self:
-			tao.m_uom_name = uom_name"""
-		self.m_uom_name = "Hello World !"
+		uom_name = config_uom.name"""
+		for timesheet in self:
+			timesheet.m_uom_name = "Hello World !"
 
 
 	@api.model
@@ -65,7 +63,7 @@ class TimesheetAddOn(models.Model):
 			records.append(vals)
 
 		data['employee'] = rec.m_employee.name
-		data['unit'] = rec.m_config_unit_name
+		data['unit'] = rec.m_uom_name
 		data['timesheets'] = records
 		data['total'] = total
 
