@@ -13,6 +13,12 @@
         <template id="timesheet_report">
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
+                    <br/><br/>
+                    ADRESSE : <br/>
+                    <!-- address t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/ -->
+                    <div t-field="data['customer']"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true, "phone_icons": true}'/>
+                    <br/><br/>
                     docs : <t t-esc="docs"/> <br/>
                     docs_ids : <t t-esc="doc_ids"/> <br/>
                     doc_model : <t t-esc="doc_model"/> <br/>

@@ -13,7 +13,7 @@ class TimesheetAddOn(models.Model):
 	m_date_start = fields.Date(string="Date de début", required=True)
 	m_date_end = fields.Date(string="Date de fin", required=True)
 	m_uom_name = fields.Selection([("day", "Jour(s)"), ("hour", "Heure(s)")], default='day', string="Unité de mesure", readonly=True)
-
+	m_customer = fields.Many2one('res.partner', string="Client", domain="[('is_company','=',True)]", required=True)
 
 
 	@api.model
@@ -24,18 +24,20 @@ class TimesheetAddOn(models.Model):
 		#Form reading
 		rec = self.browse(data)
 		data = {}
-		data['form'] = rec.read(['m_employee', 'm_date_start', 'm_date_end'])
+		data['form'] = rec.read(['m_employee', 'm_date_start', 'm_date_end', 'm_customer'])
 
 		#Query preparation using ORM
 		timesheet_environment = self.env['account.analytic.line']
 
-		domain = [('employee_id', '=', int(rec.m_employee)), ('validated', '=', True)]
+		domain = [
+			('employee_id', '=', int(rec.m_employee)), 
+			('validated', '=', True),
+			('date', '>=', rec.m_date_start),
+			('date', '<=', rec.m_date_end),
+			('partner_id', '=', int(rec.m_customer))
+		]
 
-		if rec.m_date_start:
-			domain.append(('date', '>=', rec.m_date_start))
 
-		if rec.m_date_end:
-			domain.append(('date', '<=', rec.m_date_end))
 		"""if rec.m_date_start and rec.m_date_end:
 			domain = [('employee_id', '=', int(rec.m_employee)), ('date', '>=', rec.m_date_start),('date', '<=', rec.m_date_end)]
 		elif rec.m_date_start:
@@ -46,6 +48,13 @@ class TimesheetAddOn(models.Model):
 			domain = [('employee_id', '=', int(rec.m_employee))]"""
 
 		timesheets = timesheet_environment.search(domain, order='date asc')
+		data['customer'] = rec.m_customer
+		data['employee'] = rec.m_employee.name
+		data['uom'] = dict(rec._fields['m_uom_name'].selection).get(rec.m_uom_name)
+
+		if len(timesheets) == 0:
+			data['error'] = "Aucune feuille de temps n'a été trouvé."
+			return self.env.ref('timesheet_addon.action_timesheet_report').report_action(self, data=data, config=False)
 
 		#Data recording
 		records = []
@@ -60,8 +69,6 @@ class TimesheetAddOn(models.Model):
 			total += amount
 			records.append(vals)
 
-		data['employee'] = rec.m_employee.name
-		data['uom'] = dict(rec._fields['m_uom_name'].selection).get(rec.m_uom_name)
 		data['timesheets'] = records
 		data['total'] = total
 

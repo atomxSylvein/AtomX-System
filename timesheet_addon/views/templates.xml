@@ -11,11 +11,12 @@
                     <group>
                         <group string="Employé">
                             <field name="m_employee"/>
-                            <field name="m_uom_name"/>
+                            <field name="m_customer"/>
                         </group>
                         <group string="Période">
                             <field name="m_date_start"/>
                             <field name="m_date_end"/>
+                            <field name="m_uom_name"/>
                         </group>
                         <footer>
                             <button string="Imprimer la timesheet" name="print_timesheet" type="object" class="btn-primary"/>
