@@ -13,23 +13,59 @@
         <template id="timesheet_report">
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
-                    <br/><br/>
-                    ADRESSE : <br/>
-                    <!-- address t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/ -->
+                    <div align="right">
+                        <t t-esc="data['customer_name']"/><br/>
+                        <t t-esc="data['customer_street']"/> <br/>
+                        <t t-if="data['customer_street2']" t-esc="data['street2']"/> <t t-if="data['customer_street2']"><br/></t>
+                        <span t-esc="data['customer_city']"/>
+                        <span t-if="data['customer_state']" t-esc="data['customer_state']"/>
+                        <span t-esc="data['customer_zip']"/> <br/>
+                        <t t-esc="data['customer_country']"/>
+                    </div>
                     
-                    <br/><br/>
-                    docs : <t t-esc="docs"/> <br/>
-                    docs_ids : <t t-esc="doc_ids"/> <br/>
-                    doc_model : <t t-esc="doc_model"/> <br/>
-                    data : <t t-esc="data"/> <br/>
+                    <br/><br/><br/><br/>
+
                     <t t-foreach="docs" t-as="o">
                         <div class="page">
-                            <h2>Hello World !</h2>
+                            <center><h3>Feuille de temps</h3></center><br/>
+                            <strong>Période : </strong>du <t t-esc="data['form'][0]['m_date_start']"/> au <t t-esc="data['form'][0]['m_date_end']"/><br/>
+                            <strong>Ressource : </strong> <t t-esc="employee"/><br/>
+                            <strong>Total : </strong> <t t-esc="total"/> jour(s) <br/>
+
+                            <br/><br/><br/>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Projet</th>
+                                        <th scope="col">Tâche</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Nombre de jours</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="timesheets" t-as="timesheet">
+                                    <tr>
+                                    <td><t t-esc="timesheet['date']"/></td>
+                                    <td><t t-esc="timesheet['project']"/></td>
+                                    <td><t t-esc="timesheet['task']"/></td>
+                                    <td><t t-esc="timesheet['description']"/></td>
+                                    <td><t t-esc="timesheet['duration']"/></td>
+                                    </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+
+                            <!-- DEBUG VARIABLES
+                             docs : <t t-esc="docs"/> <br/>
+                            docs_ids : <t t-esc="doc_ids"/> <br/>
+                            doc_model : <t t-esc="doc_model"/> <br/>
+                            data : <t t-esc="data"/> <br/> -->
                         </div>
                     </t>
                 </t>
             </t>
         </template>
-
     </data>
 </odoo>

@@ -1,8 +1,5 @@
 from odoo import models, fields, api
-
-"""class TimesheetSettings(models.TransientModel):
-	_name = 'timesheet_addon.settings'
-	_inherit = 'res.config.settings'"""
+from datetime import datetime
 
 class TimesheetAddOn(models.Model):
 
@@ -25,7 +22,8 @@ class TimesheetAddOn(models.Model):
 		rec = self.browse(data)
 		data = {}
 		data['form'] = rec.read(['m_employee', 'm_date_start', 'm_date_end', 'm_customer'])
-
+		data['form'][0][m_date_start] = datetime.strptime(data['form'][0][m_date_start], '%Y-%m-%d').strftime('%d/%m/%Y')
+		data['form'][0][m_date_end] = datetime.strptime(data['form'][0][m_date_end], '%Y-%m-%d').strftime('%d/%m/%Y')
 		#Query preparation using ORM
 		timesheet_environment = self.env['account.analytic.line']
 
@@ -75,7 +73,7 @@ class TimesheetAddOn(models.Model):
 					'duration': amount,
 					'task': t.task_id.name,
 					'description':t.name,
-					'date': t.date,}
+					'date': datetime.strptime(t.date, '%Y-%m-%d').strftime('%d/%m/%Y'),} 
 			total += amount
 			records.append(vals)
 
