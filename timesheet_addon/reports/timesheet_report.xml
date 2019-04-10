@@ -6,7 +6,7 @@
             id="action_timesheet_report"
             model="timesheet_addon.tbe"
             string="Feuille de temps"
-            print_report_name = "('bobo' + object.name +'.pdf')"
+            print_report_name = "bobi.pdf"
             report_type="qweb-pdf"
             name="timesheet_addon.timesheet_report"
             file="timesheet_addon.timesheet_report"/>
