@@ -39,8 +39,8 @@
                                     <tr>
                                         <th scope="col">Date</th>
                                         <th scope="col">Projet</th>
-                                        <th scope="col">Tâche</th>
-                                        <th scope="col">Description</th>
+                                        <!-- th scope="col">Tâche</th>
+                                        <th scope="col">Description</th -->
                                         <th scope="col">Nombre de jours</th>
                                     </tr>
                                 </thead>
@@ -49,8 +49,8 @@
                                     <tr>
                                     <td><t t-esc="timesheet['date']"/></td>
                                     <td><t t-esc="timesheet['project']"/></td>
-                                    <td><t t-esc="timesheet['task']"/></td>
-                                    <td><t t-esc="timesheet['description']"/></td>
+                                    <!-- td><t t-esc="timesheet['task']"/></td>
+                                    <td><t t-esc="timesheet['description']"/></td -->
                                     <td><t t-esc="timesheet['duration']"/></td>
                                     </tr>
                                     </t>
