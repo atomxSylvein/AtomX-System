@@ -11,7 +11,7 @@
                     <group>
                         <group string="Employé">
                             <field name="m_employee"/>
-                            <field name="m_customer"/>
+                            <field name="m_customer" required="1"/>
                         </group>
                         <group string="Période">
                             <field name="m_date_start"/>

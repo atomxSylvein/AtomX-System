@@ -13,7 +13,7 @@ class TimesheetAddOn(models.Model):
 	m_date_start = fields.Date(string="Date de début", required=True)
 	m_date_end = fields.Date(string="Date de fin", required=True)
 	m_uom_name = fields.Selection([("day", "Jour(s)"), ("hour", "Heure(s)")], default='day', string="Unité de mesure", readonly=True)
-	m_customer = fields.Many2one('res.partner', string="Client", domain="[('is_company','=',True)]", required=True)
+	m_customer = fields.Many2one('res.partner', string="Client", domain="[('is_company','=',True)]")
 
 
 	@api.model
