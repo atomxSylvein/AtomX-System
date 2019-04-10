@@ -22,7 +22,7 @@ class TimesheetAddOn(models.Model):
 		rec = self.browse(data)
 		data = {}
 		data['form'] = rec.read(['m_employee', 'm_date_start', 'm_date_end', 'm_customer'])
-		data['form'][0]['m_date_start'] = datetime.strptime(data['form'][0]['m_date_start'], '%Y-%m-%d').strftime('%d/%m/%Y')
+		data['form'][0]['m_date_start'] = data['form'][0]['m_date_start'].strftime('%d/%m/%Y')
 		data['form'][0]['m_date_end'] = datetime.strptime(data['form'][0]['m_date_end'], '%Y-%m-%d').strftime('%d/%m/%Y')
 		#Query preparation using ORM
 		timesheet_environment = self.env['account.analytic.line']
