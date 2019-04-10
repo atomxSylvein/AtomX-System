@@ -48,9 +48,19 @@ class TimesheetAddOn(models.Model):
 			domain = [('employee_id', '=', int(rec.m_employee))]"""
 
 		timesheets = timesheet_environment.search(domain, order='date asc')
-		data['customer'] = rec.m_customer
+
+		#Get partner address (naive way)
+		data['customer_name'] = rec.m_customer.name
+		data['customer_street'] = rec.m_customer.street
+		data['customer_street2'] = rec.m_customer.street2
+		data['customer_country'] = rec.m_customer.country_id.name
+		data['customer_city'] = rec.m_customer.city
+		data['customer_state'] = rec.m_customer.state_id.name
+		data['customer_zip'] = rec.m_customer.zip
+
 		data['employee'] = rec.m_employee.name
 		data['uom'] = dict(rec._fields['m_uom_name'].selection).get(rec.m_uom_name)
+
 
 		if len(timesheets) == 0:
 			data['error'] = "Aucune feuille de temps n'a été trouvé."
