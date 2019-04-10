@@ -28,7 +28,12 @@
 
                     <t t-foreach="docs" t-as="o">
                         <div class="page">
-                            <center><h2>Feuille de temps - <t t-esc="employee"/></h2></center><br/><br/>
+                            <t t-if="data['error']">
+                                <center><h2><t t-esc="data['error']"/></h2></center><br/><br/>
+                            </t>
+                            <t t-else="">
+                                <center><h2>Feuille de temps - <t t-esc="employee"/></h2></center><br/><br/>
+                            </t>
                             <strong>Période : </strong>du <t t-esc="data['form'][0]['m_date_start']"/> au <t t-esc="data['form'][0]['m_date_end']"/><br/>
                             <strong>Ressource : </strong> <t t-esc="employee"/><br/>
                             <strong>Total : </strong> <t t-esc="total"/> jour(s) <br/>
