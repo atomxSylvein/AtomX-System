@@ -53,6 +53,7 @@ class TimesheetAddOn(models.Model):
 
 		if len(timesheets) == 0:
 			data['timesheets'] = []
+			data['total'] = 0
 			data['error'] = "Aucune feuille de temps n'a été trouvé."
 			return self.env.ref('timesheet_addon.action_timesheet_report').report_action(self, data=data, config=False)
 
