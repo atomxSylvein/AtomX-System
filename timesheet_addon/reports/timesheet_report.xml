@@ -10,8 +10,7 @@
             report_type="qweb-pdf"
             name="timesheet_addon.timesheet_report"
             file="timesheet_addon.timesheet_report"
-            attachment_use="False"
-            attachment="bobi.pdf"/>
+            report_name="bobi.pdf"/>
 
         <template id="timesheet_report">
             <t t-call="web.html_container">
