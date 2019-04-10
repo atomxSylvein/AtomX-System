@@ -5,8 +5,8 @@
         <report
             id="action_timesheet_report"
             model="timesheet_addon.tbe"
+            print_report_name = "'sale_%s.pdf' % object.m_uom_name"
             string="Feuille de temps"
-            print_report_name = "bobi.pdf"
             report_type="qweb-pdf"
             name="timesheet_addon.timesheet_report"
             file="timesheet_addon.timesheet_report"/>
@@ -28,7 +28,7 @@
 
                     <t t-foreach="docs" t-as="o">
                         <div class="page">
-                            <center><h2>Feuille de temps</h2></center><br/><br/>
+                            <center><h2>Feuille de temps - <t t-esc="employee"/></h2></center><br/><br/>
                             <strong>Période : </strong>du <t t-esc="data['form'][0]['m_date_start']"/> au <t t-esc="data['form'][0]['m_date_end']"/><br/>
                             <strong>Ressource : </strong> <t t-esc="employee"/><br/>
                             <strong>Total : </strong> <t t-esc="total"/> jour(s) <br/>
