@@ -7,8 +7,8 @@ class TimesheetAddOn(models.Model):
 	_description = 'Model to print timesheets'
 
 	m_employee = fields.Many2one('hr.employee', string="Employé", required=True)
-	m_date_start = fields.Date(string="Date de début", required=True)
-	m_date_end = fields.Date(string="Date de fin", required=True)
+	m_date_start = fields.Date(string="Date de début", default=lambda self: fields.datetime.now(), required=True)
+	m_date_end = fields.Date(string="Date de fin", default=lambda self: fields.datetime.now(), required=True)
 	m_uom_name = fields.Selection([("day", "Jour(s)"), ("hour", "Heure(s)")], default='day', string="Unité de mesure", readonly=True)
 	m_customer = fields.Many2one('res.partner', string="Client", domain="[('is_company','=',True)]")
 
@@ -35,16 +35,6 @@ class TimesheetAddOn(models.Model):
 			('date', '<=', rec.m_date_end),
 			('partner_id', '=', int(rec.m_customer))
 		]
-
-
-		"""if rec.m_date_start and rec.m_date_end:
-			domain = [('employee_id', '=', int(rec.m_employee)), ('date', '>=', rec.m_date_start),('date', '<=', rec.m_date_end)]
-		elif rec.m_date_start:
-			domain = [('employee_id', '=', int(rec.m_employee)), ('date', '>=', rec.m_date_start)]
-		elif rec.m_date_end:
-			domain = [('employee_id', '=', int(rec.m_employee)), ('date', '<=', rec.m_date_end)]
-		else:
-			domain = [('employee_id', '=', int(rec.m_employee))]"""
 
 		timesheets = timesheet_environment.search(domain, order='date asc')
 
