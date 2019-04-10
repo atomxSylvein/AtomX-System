@@ -5,13 +5,11 @@
         <report
             id="action_timesheet_report"
             model="timesheet_addon.tbe"
+            string="Feuille de temps"
+            print_report_name = "('bobo' + object.name +'.pdf')"
             report_type="qweb-pdf"
             name="timesheet_addon.timesheet_report"
             file="timesheet_addon.timesheet_report"/>
-
-        <record id="timesheet_addon.action_timesheet_report" model="ir.actions.report.xml">
-            <field name="print_report_name"><![CDATA[(object.m_employee.name +'.pdf')]]></field>
-        </record>
 
         <template id="timesheet_report">
             <t t-call="web.html_container">

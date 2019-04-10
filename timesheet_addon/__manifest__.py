@@ -12,7 +12,7 @@
 
     'category': 'Tools',
 
-    'version': '0.2.48',
+    'version': '0.2.49',
 
     # any module necessary for this one to work correctly
     'depends': ['timesheet_grid', 'hr'],
