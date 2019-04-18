@@ -1,0 +1,77 @@
+<odoo>
+    <data>
+
+        <!-- Report 
+            report_name = "'sale_%s.pdf' % object.m_uom_name"-->
+        <report
+            id="action_timesheet_report"
+            model="timesheet_addon.tbe"
+            string="Feuille de temps"
+            report_type="qweb-pdf"
+            name="timesheet_addon.timesheet_report"
+            file="timesheet_addon.timesheet_report"/>
+
+        <template id="timesheet_report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div align="right">
+                        <t t-esc="data['customer_name']"/><br/>
+                        <t t-esc="data['customer_street']"/> <br/>
+                        <t t-if="data['customer_street2']" t-esc="data['street2']"/> <t t-if="data['customer_street2']"><br/></t>
+                        <span t-esc="data['customer_city']"/>
+                        <span t-if="data['customer_state']" t-esc="data['customer_state']"/>
+                        <span t-esc="data['customer_zip']"/> <br/>
+                        <t t-esc="data['customer_country']"/>
+                    </div>
+                    
+                    <br/><br/><br/>
+
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <t t-if="data['error']">
+                                <center><h2><t t-esc="data['error']"/></h2></center><br/><br/>
+                            </t>
+                            <t t-else="">
+                                <center><h2>Feuille de temps - <t t-esc="employee"/></h2></center><br/><br/>
+                            </t>
+                            <strong>Période : </strong>du <t t-esc="data['form'][0]['m_date_start']"/> au <t t-esc="data['form'][0]['m_date_end']"/><br/>
+                            <strong>Ressource : </strong> <t t-esc="employee"/><br/>
+                            <strong>Total : </strong> <t t-esc="total"/> jour(s) <br/>
+
+                            <br/><br/>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Projet</th>
+                                        <!-- th scope="col">Tâche</th>
+                                        <th scope="col">Description</th -->
+                                        <th scope="col">Nombre de jours</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="timesheets" t-as="timesheet">
+                                    <tr>
+                                    <td><t t-esc="timesheet['date']"/></td>
+                                    <td><t t-esc="timesheet['project']"/></td>
+                                    <!-- td><t t-esc="timesheet['task']"/></td>
+                                    <td><t t-esc="timesheet['description']"/></td -->
+                                    <td><t t-esc="timesheet['duration']"/></td>
+                                    </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+
+                            <!-- DEBUG VARIABLES
+                             docs : <t t-esc="docs"/> <br/>
+                            docs_ids : <t t-esc="doc_ids"/> <br/>
+                            doc_model : <t t-esc="doc_model"/> <br/>
+                            data : <t t-esc="data"/> <br/> -->
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
