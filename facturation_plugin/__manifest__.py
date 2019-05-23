@@ -12,7 +12,7 @@
 
     'category': 'Tools',
 
-    'version': '0.10',
+    'version': '0.11',
 
     # any module necessary for this one to work correctly
     'depends': ['account'],

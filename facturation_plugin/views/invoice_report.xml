@@ -5,9 +5,12 @@
 
 			<t t-set="address" position="after">
 				<strong>TVA N° : </strong> FR 88840339899 <br/>
-				<strong class="mb-4">N° Siret : </strong> 84033989900014
+				<strong>N° Siret : </strong> 84033989900014
 			</t>
 
+			<h2 position="attributes">
+				<attribute name="class">mb-4</attribute>
+			</h2>
 			
 			<div id="informations" position="attributes">
 				<attribute name="class">row mt-4 mb-5</attribute>
