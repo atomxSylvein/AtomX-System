@@ -12,14 +12,15 @@
 
     'category': 'Tools',
 
-    'version': '0.2',
+    'version': '0.3',
 
     # any module necessary for this one to work correctly
     'depends': ['account'],
 
     # always loaded
     'data': [
-        'views/templates.xml',
+        'views/invoice_report.xml',
+        'views/external_layout.xml',
     ],
     'installable': True,
     'auto_install': False,

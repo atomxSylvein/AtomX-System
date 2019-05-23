@@ -1,0 +1,19 @@
+<odoo>
+	<data>
+
+		<template id="external_layout_custom" inherit_id="web.external_layout_standard">
+
+                <ul class="list-inline mb4" position="replace">
+					<ul class="list-inline mb4">
+						<li>Société par actions simplifiée au capital de 25 000,00€</li>
+						<li>Siège social : 18, rue Sleidan, Strasbourg, 67000</li>
+						<li t-if="company.phone" class="list-inline-item">Téléphone: <span t-field="company.phone"/></li>
+						<li t-if="company.email" class="list-inline-item">Email: <span t-field="company.email"/></li>
+						<li t-if="company.website" class="list-inline-item">Web: <span t-field="company.website"/></li>
+                	</ul>
+                </ul>
+                
+		</template>
+
+	</data>
+</odoo>

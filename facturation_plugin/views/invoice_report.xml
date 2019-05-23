@@ -1,0 +1,18 @@
+<odoo>
+	<data>
+
+		<template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
+
+			<t t-set="address" position="after">
+				<strong>TVA N° : </strong> FR 88840339899 <br/>
+				<strong>N° Siret : </strong> 84033989900014
+			</t>
+
+			<div class="page" position="attributes">
+				<attribute name="class">page mt-4</attribute>
+			</div>
+
+		</template>
+
+	</data>
+</odoo>
