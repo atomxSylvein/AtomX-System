@@ -1,0 +1,8 @@
+<odoo>
+	<data>
+
+		<template id="account_report_custom" inherit_id="account.report_invoice">
+			<xpath expr="//t[@t-call='account.report_invoice_document']" position="replace">
+				<t t-call="facturation_plugin.report_invoice_document" t-lang="o.partner_id.lang"/>
+			</xpath>
+		</template>
