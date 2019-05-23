@@ -1,7 +1,7 @@
 <odoo>
 	<data>
 
-		<template id="report_invoice_document_custom">
+		<template id="report_invoice_document">
 
 			<t t-call="web.external_layout">
                 <t t-set="o" t-value="o.with_context(lang=lang)"/>
@@ -12,7 +12,7 @@
                 
                 <strong>TVA N° : </strong> FR 88840339899 <br/>
 				<strong>N° Siret : </strong> 84033989900014
-				
+
                 <div class="page mt-4">
                     <h2>
                         <span t-if="o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')">Invoice</span>
