@@ -11,7 +11,47 @@
 			<div class="page" position="attributes">
 				<attribute name="class">page mt-4</attribute>
 			</div>
+			
+			<div id="informations" position="attributes">
+				<attribute name="class">row mt-4 mb-5</attribute>
+			</div>
+			
+			<div name="invoice_date" position="attributes">
+				<attribute name="class">col-4</attribute>
+			</div>
+			
+			<div name="due_date" position="attributes">
+			  <attribute name="class">col-4</attribute>
+			</div>
+			
+			<div name="reference" position="attributes">
+				<attribute name="class">col-4</attribute>
+			</div>
+			
+			<div name="origin" position="replace"/>
+			<div name="customer_code" position="replace"/>
 
+			<div class="clearfix" position="after">
+				<table class="table mt-5">
+					<tbody><tr>
+						<td width="50%">
+							<strong>Notes</strong><br/>
+							Règlement par virement : <br/>IBAN : FR76 1027 8010 0900 0220 3850 150<br/>
+							BIC : CMCIFR2A
+						</td>
+						<td width="50%">
+							<strong>Paiement en retard</strong><br/>
+							Taux de pénalité : 5,00 %<br/>
+							Indemnité forfaitaire pour frais de recouvrement en cas de retard de paiement : 40,00€<br/><br/>
+							<strong>Paiement anticipé</strong><br/>
+							Taux d'escompte : 0,00 %
+						</td>
+					</tr></tbody>
+				</table>
+			</div>
+
+      		<p t-if="o.reference" position="replace"/>
+      		
 		</template>
 
 	</data>
