@@ -9,7 +9,7 @@
 			</t>
 
 			<h2 position="attributes">
-				<attribute name="class">mb-4</attribute>
+				<attribute name="class">mt-4</attribute>
 			</h2>
 			
 			<div id="informations" position="attributes">
