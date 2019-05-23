@@ -33,10 +33,10 @@
 
 			<div class="clearfix" position="after">
 				<table class="table mt-5">
-					<tbody><tr>
+					<tbody t-if="o.partner_id.lang == 'fr_FR'"><tr>
 						<td width="50%">
 							<strong>Notes</strong><br/>
-							Règlement par virement : <br/>IBAN : FR76 1027 8010 0900 0220 3850 150<br/>
+							Règlement par virement :<br/>IBAN : FR76 1027 8010 0900 0220 3850 150<br/>
 							BIC : CMCIFR2A
 						</td>
 						<td width="50%">
@@ -45,6 +45,20 @@
 							Indemnité forfaitaire pour frais de recouvrement en cas de retard de paiement : 40,00€<br/><br/>
 							<strong>Paiement anticipé</strong><br/>
 							Taux d'escompte : 0,00 %
+						</td>
+					</tr></tbody>
+					<tbody t-else=""><tr>
+					  <td width="50%">
+							<strong>Notes</strong><br/>
+							Payment by transfer:<br/>IBAN : FR76 1027 8010 0900 0220 3850 150<br/>
+							BIC : CMCIFR2A
+						</td>
+						<td width="50%">
+							<strong>Late payment</strong><br/>
+							Penality rate: 5,00 %<br/>
+							Flat-rate compensation for recovery costs in case of late payment: 40,00€<br/><br/>
+							<strong>Advance payment</strong><br/>
+							Discount rate: 0,00 %
 						</td>
 					</tr></tbody>
 				</table>
