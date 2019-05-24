@@ -28,7 +28,7 @@
 
                     <t t-foreach="docs" t-as="o">
                         <div class="page">
-                            <t t-if="data['error']">
+                            <t t-if="'error' in data">
                                 <center><h2><t t-esc="data['error']"/></h2></center><br/><br/>
                             </t>
                             <t t-elif="data['language'] == fr_FR">
