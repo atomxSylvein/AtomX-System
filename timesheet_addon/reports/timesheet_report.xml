@@ -27,6 +27,7 @@
                     <br/><br/><br/>
 
                     <t t-foreach="docs" t-as="o">
+                        <t t-set="o.partner_id" t-value="data['partner_id']"/>
                         <div class="page">
                             <t t-if="'error' in data">
                                 <center><h2><t t-esc="data['error']"/></h2></center><br/><br/>
