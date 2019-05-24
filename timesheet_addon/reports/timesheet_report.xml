@@ -9,9 +9,7 @@
             string="Feuille de temps"
             report_type="qweb-pdf"
             name="timesheet_addon.timesheet_report"
-            file="timesheet_addon.timesheet_report"
-            attachment="true and 'unNom.pdf'"
-            print_report_name="('unNom')"/>
+            file="timesheet_addon.timesheet_report"/>
 
         <template id="timesheet_report">
             <t t-call="web.html_container">
