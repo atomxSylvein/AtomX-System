@@ -1,8 +1,6 @@
 <odoo>
     <data>
 
-        <!-- Report 
-            report_name = "'sale_%s.pdf' % object.m_uom_name"-->
         <report
             id="action_timesheet_report"
             model="timesheet_addon.tbe"
