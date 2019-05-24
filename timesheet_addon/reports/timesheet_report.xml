@@ -10,26 +10,19 @@
             file="timesheet_addon.timesheet_report"/>
 
         <template id="timesheet_report">
-            <t t-call="web.html_container">
-                <t t-call="web.external_layout">
-                    <div align="right">
-                        <t t-esc="data['customer_name']"/><br/>
-                        <t t-esc="data['customer_street']"/> <br/>
-                        <t t-if="data['customer_street2']"> 
-                            <t t-esc="data['customer_street2']"/><br/>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.html_container">
+                    <t t-call="web.external_layout">
+                        <t t-set="address">
+                            <address align="right" t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                            <div t-if="o.partner_id.vat" class="mt16"><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="o.partner_id.vat"/></div>
                         </t>
-                        <span t-esc="data['customer_city']"/>
-                        <span t-if="data['customer_state']" t-esc="data['customer_state']"/>
-                        <span t-esc="data['customer_zip']"/> <br/>
-                        <t t-esc="data['customer_country']"/>
-                    </div>
-                    
-                    <br/><br/><br/>
+                        
+                        <br/><br/><br/>
 
-                    <t t-foreach="docs" t-as="o">
-                        <!-- t t-set="o.partner_id" t-value="data['partner_id']"/ -->
+                
                         <div class="page">
-                            <!-- t t-if="'error' in data">
+                            <t t-if="'error' in data">
                                 <center><h2><t t-esc="data['error']"/></h2></center><br/><br/>
                             </t>
                             <t t-elif="data['language'] == 'fr_FR'">
@@ -74,14 +67,11 @@
                                 </tbody>
                             </table>
 
-                            <!- - DEBUG VARIABLES -->
-                             docs : <t t-esc="docs"/> <br/>
+                            <!-- DEBUG VARIABLES
+                            docs : <t t-esc="docs"/> <br/>
                             docs_ids : <t t-esc="doc_ids"/> <br/>
                             doc_model : <t t-esc="doc_model"/> <br/>
-                            data : <t t-esc="data"/> <br/>
-                            o : <t t-esc="o"/> <br/>
-                            o.partner_id : <t t-esc="o.partner_id"/> <br/>
-                            m_uom_name : : <t t-esc="o.m_uom_name"/> <br/>
+                            data : <t t-esc="data"/> <br/> -->
                         </div>
                     </t>
                 </t>

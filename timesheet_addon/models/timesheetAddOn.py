@@ -44,16 +44,6 @@ class TimesheetAddOn(models.Model):
 
 		timesheets = timesheet_environment.search(domain, order='date asc')
 
-		#Get partner address (naive way)
-		data['partner_id'] = rec.partner_id
-		data['customer_name'] = rec.partner_id.name
-		data['customer_street'] = rec.partner_id.street
-		data['customer_street2'] = rec.partner_id.street2
-		data['customer_country'] = rec.partner_id.country_id.name
-		data['customer_city'] = rec.partner_id.city
-		data['customer_state'] = rec.partner_id.state_id.name
-		data['customer_zip'] = rec.partner_id.zip
-
 		data['employee'] = rec.m_employee.name
 		data['uom'] = dict(rec._fields['m_uom_name'].selection).get(rec.m_uom_name)
 
