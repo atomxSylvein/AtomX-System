@@ -5,7 +5,7 @@
             id="action_timesheet_report"
             model="timesheet_addon.tbe"
             string="Feuille de temps"
-            report_type="qweb-html"
+            report_type="qweb-pdf"
             name="timesheet_addon.timesheet_report"
             file="timesheet_addon.timesheet_report"/>
 
