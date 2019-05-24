@@ -15,7 +15,9 @@
                     <div align="right">
                         <t t-esc="data['customer_name']"/><br/>
                         <t t-esc="data['customer_street']"/> <br/>
-                        <t t-if="data['customer_street2']" t-esc="data['street2']"/> <t t-if="data['customer_street2']"><br/></t>
+                        <t t-if="data['customer_street2']"> 
+                            <t t-esc="data['customer_street2']"/><br/>
+                        </t>
                         <span t-esc="data['customer_city']"/>
                         <span t-if="data['customer_state']" t-esc="data['customer_state']"/>
                         <span t-esc="data['customer_zip']"/> <br/>
