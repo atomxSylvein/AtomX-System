@@ -31,13 +31,13 @@
                             <t t-if="'error' in data">
                                 <center><h2><t t-esc="data['error']"/></h2></center><br/><br/>
                             </t>
-                            <t t-elif="data['language'] == fr_FR">
+                            <t t-elif="data['language'] == 'fr_FR'">
                                 <center><h2>Feuille de temps - <t t-esc="employee"/></h2></center><br/><br/>
                             </t>
                             <t t-else="">
                                 <center><h2>Timesheet - <t t-esc="employee"/></h2></center><br/><br/>
                             </t>
-                            <t t-if="data['language'] == fr_FR">
+                            <t t-if="data['language'] == 'fr_FR'">
                                 <strong>Période : </strong>du <t t-esc="data['form'][0]['m_date_start']"/> au <t t-esc="data['form'][0]['m_date_end']"/><br/>
                                 <strong>Ressource : </strong> <t t-esc="employee"/><br/>
                                 <strong>Total : </strong> <t t-esc="total"/> jour(s) <br/>
@@ -51,7 +51,7 @@
 
                             <table class="table">
                                 <thead>
-                                    <tr t-if="data['language'] == fr_FR">
+                                    <tr t-if="data['language'] == 'fr_FR'">
                                         <th scope="col">Date</th>
                                         <th scope="col">Projet</th>
                                         <th scope="col">Nombre de jours</th>
