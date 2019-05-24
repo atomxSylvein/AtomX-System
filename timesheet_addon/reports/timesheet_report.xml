@@ -9,7 +9,9 @@
             string="Feuille de temps"
             report_type="qweb-pdf"
             name="timesheet_addon.timesheet_report"
-            file="timesheet_addon.timesheet_report"/>
+            file="timesheet_addon.timesheet_report"
+            attachment="true and 'unNom.pdf'"
+            print_report_name="(object._get_report_base_filename())"/>
 
         <template id="timesheet_report">
             <t t-call="web.html_container">
@@ -40,12 +42,12 @@
                             <t t-if="data['language'] == 'fr_FR'">
                                 <strong>Période : </strong>du <t t-esc="data['form'][0]['m_date_start']"/> au <t t-esc="data['form'][0]['m_date_end']"/><br/>
                                 <strong>Ressource : </strong> <t t-esc="employee"/><br/>
-                                <strong>Total : </strong> <t t-esc="total"/> jour(s) <br/>
+                                <strong>Total : </strong> <t t-esc="total"/> jours <br/>
                             </t>
                             <t t-else="">
                                 <strong>Period : </strong>from <t t-esc="data['form'][0]['m_date_start']"/> to <t t-esc="data['form'][0]['m_date_end']"/><br/>
                                 <strong>Resource : </strong> <t t-esc="employee"/><br/>
-                                <strong>Total : </strong> <t t-esc="total"/> day(s) <br/>
+                                <strong>Total : </strong> <t t-esc="total"/> days <br/>
                             </t>
                             <br/><br/>
 

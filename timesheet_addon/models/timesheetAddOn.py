@@ -86,3 +86,8 @@ class TimesheetAddOn(models.Model):
 		data['total'] = total
 
 		return self.env.ref('timesheet_addon.action_timesheet_report').report_action(self, data=data, config=False)
+
+	@api.multi
+	def _get_report_base_filename(self):
+		self.ensure_one()
+		return  "unNom"
