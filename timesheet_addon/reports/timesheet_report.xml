@@ -1,8 +1,6 @@
 <odoo>
     <data>
 
-        <!-- Report 
-            report_name = "'sale_%s.pdf' % object.m_uom_name"-->
         <report
             id="action_timesheet_report"
             model="timesheet_addon.tbe"
@@ -28,26 +26,38 @@
 
                     <t t-foreach="docs" t-as="o">
                         <div class="page">
-                            <t t-if="data['error']">
+                            <t t-if="'error' in data">
                                 <center><h2><t t-esc="data['error']"/></h2></center><br/><br/>
                             </t>
-                            <t t-else="">
+                            <t t-elif="data['language'] == 'fr_FR'">
                                 <center><h2>Feuille de temps - <t t-esc="employee"/></h2></center><br/><br/>
                             </t>
-                            <strong>Période : </strong>du <t t-esc="data['form'][0]['m_date_start']"/> au <t t-esc="data['form'][0]['m_date_end']"/><br/>
-                            <strong>Ressource : </strong> <t t-esc="employee"/><br/>
-                            <strong>Total : </strong> <t t-esc="total"/> jour(s) <br/>
-
+                            <t t-else="">
+                                <center><h2>Timesheet - <t t-esc="employee"/></h2></center><br/><br/>
+                            </t>
+                            <t t-if="data['language'] == 'fr_FR'">
+                                <strong>Période : </strong>du <t t-esc="data['form'][0]['m_date_start']"/> au <t t-esc="data['form'][0]['m_date_end']"/><br/>
+                                <strong>Ressource : </strong> <t t-esc="employee"/><br/>
+                                <strong>Total : </strong> <t t-esc="total"/> jours <br/>
+                            </t>
+                            <t t-else="">
+                                <strong>Period : </strong>from <t t-esc="data['form'][0]['m_date_start']"/> to <t t-esc="data['form'][0]['m_date_end']"/><br/>
+                                <strong>Resource : </strong> <t t-esc="employee"/><br/>
+                                <strong>Total : </strong> <t t-esc="total"/> days <br/>
+                            </t>
                             <br/><br/>
 
                             <table class="table">
                                 <thead>
-                                    <tr>
+                                    <tr t-if="data['language'] == 'fr_FR'">
                                         <th scope="col">Date</th>
                                         <th scope="col">Projet</th>
-                                        <!-- th scope="col">Tâche</th>
-                                        <th scope="col">Description</th -->
                                         <th scope="col">Nombre de jours</th>
+                                    </tr>
+                                    <tr t-else="">
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Project</th>
+                                        <th scope="col">Number of days</th>
                                     </tr>
                                 </thead>
                                 <tbody>
