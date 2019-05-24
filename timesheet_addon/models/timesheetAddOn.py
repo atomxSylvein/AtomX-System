@@ -10,8 +10,8 @@ class TimesheetAddOn(models.Model):
 	m_date_start = fields.Date(string="Date de début", default=lambda self: fields.Date.today(), required=True)
 	m_date_end = fields.Date(string="Date de fin", default=lambda self: fields.Date.today(), required=True)
 	m_uom_name = fields.Selection([("day", "Jour(s)"), ("hour", "Heure(s)")], default='day', string="Unité de mesure", readonly=True)
-	m_customer = fields.Many2one('res.partner', string="Client", domain="[('is_company','=',True)]")
-	m_language = fields.Selection(related='m_customer.lang', string="Langue du client", store=False, readonly=True)
+	partner_id = fields.Many2one('res.partner', string="Client", domain="[('is_company','=',True)]")
+	m_language = fields.Selection(related='partner_id.lang', string="Langue du client", store=False, readonly=True)
 
 	@api.model
 	def print_timesheet(self, data):
@@ -21,7 +21,7 @@ class TimesheetAddOn(models.Model):
 		#Form reading
 		rec = self.browse(data)
 		data = {}
-		data['form'] = rec.read(['m_employee', 'm_date_start', 'm_date_end', 'm_customer', 'm_language'])
+		data['form'] = rec.read(['m_employee', 'm_date_start', 'm_date_end', 'partner_id', 'm_language'])
 		data['language'] = data['form'][0]['m_language']
 
 		if data['language'] == 'fr_FR':
@@ -39,19 +39,10 @@ class TimesheetAddOn(models.Model):
 			('validated', '=', True),
 			('date', '>=', rec.m_date_start),
 			('date', '<=', rec.m_date_end),
-			('partner_id', '=', int(rec.m_customer))
+			('partner_id', '=', int(rec.partner_id))
 		]
 
 		timesheets = timesheet_environment.search(domain, order='date asc')
-
-		#Get partner address (naive way)
-		data['customer_name'] = rec.m_customer.name
-		data['customer_street'] = rec.m_customer.street
-		data['customer_street2'] = rec.m_customer.street2
-		data['customer_country'] = rec.m_customer.country_id.name
-		data['customer_city'] = rec.m_customer.city
-		data['customer_state'] = rec.m_customer.state_id.name
-		data['customer_zip'] = rec.m_customer.zip
 
 		data['employee'] = rec.m_employee.name
 		data['uom'] = dict(rec._fields['m_uom_name'].selection).get(rec.m_uom_name)
