@@ -11,7 +11,7 @@
                     <group>
                         <group string="Employé">
                             <field name="m_employee"/>
-                            <field name="m_customer" required="1"/>
+                            <field name="partner_id" required="1"/>
                             <field name="m_language"/>
                         </group>
                         <group string="Période">
