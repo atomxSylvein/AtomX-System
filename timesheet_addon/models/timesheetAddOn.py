@@ -11,7 +11,7 @@ class TimesheetAddOn(models.Model):
 	m_date_end = fields.Date(string="Date de fin", default=lambda self: fields.Date.today(), required=True)
 	m_uom_name = fields.Selection([("day", "Jour(s)"), ("hour", "Heure(s)")], default='day', string="Unité de mesure", readonly=True)
 	m_customer = fields.Many2one('res.partner', string="Client", domain="[('is_company','=',True)]")
-
+	m_language = fields.Selection(related='m_customer.lang', string="Langue du client", store=False, readonly=True)
 
 	@api.model
 	def print_timesheet(self, data):
@@ -21,9 +21,15 @@ class TimesheetAddOn(models.Model):
 		#Form reading
 		rec = self.browse(data)
 		data = {}
-		data['form'] = rec.read(['m_employee', 'm_date_start', 'm_date_end', 'm_customer'])
-		data['form'][0]['m_date_start'] = data['form'][0]['m_date_start'].strftime('%d/%m/%Y')
-		data['form'][0]['m_date_end'] = data['form'][0]['m_date_end'].strftime('%d/%m/%Y')
+		data['form'] = rec.read(['m_employee', 'm_date_start', 'm_date_end', 'm_customer', 'm_language'])
+		data['language'] = data['form'][0]['m_language']
+
+		if data['language'] == 'fr_FR':
+			data['form'][0]['m_date_start'] = data['form'][0]['m_date_start'].strftime('%d/%m/%Y')
+			data['form'][0]['m_date_end'] = data['form'][0]['m_date_end'].strftime('%d/%m/%Y')
+		else:
+			data['form'][0]['m_date_start'] = data['form'][0]['m_date_start'].strftime('%m/%d/%Y')
+			data['form'][0]['m_date_end'] = data['form'][0]['m_date_end'].strftime('%m/%d/%Y')
 
 		#Query preparation using ORM
 		timesheet_environment = self.env['account.analytic.line']
@@ -62,11 +68,17 @@ class TimesheetAddOn(models.Model):
 		total = 0
 		for t in timesheets:
 			amount = t.unit_amount / t.product_uom_id.factor
+
+			if data['language'] == 'fr_FR':
+				_date = t.date.strftime('%d/%m/%Y')
+			else:
+				_date = t.date.strftime('%m/%d/%Y')
+
 			vals = {'project': t.account_id.name,
 					'duration': amount,
 					'task': t.task_id.name,
 					'description':t.name,
-					'date': t.date.strftime('%d/%m/%Y'),} 
+					'date': _date,} 
 			total += amount
 			records.append(vals)
 
