@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+
+        <template id="view_order_form" inherit_id="sale.view_order_form">
+                <field name="validity_date" position="before">
+                    <field name="m_sage_number"/>
+                </field>
+        </template>
+
+    </data>
+</odoo>
