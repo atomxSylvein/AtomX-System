@@ -1,11 +1,16 @@
 <odoo>
     <data>
+        <record id="view_order_form_inherited" model="ir.ui.view">
+            <field name="name">Sale Order Form Extension</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
 
-        <template id="view_order_form" inherit_id="sale.view_order_form">
                 <field name="validity_date" position="before">
                     <field name="m_sage_number"/>
                 </field>
-        </template>
 
-    </data> 
+            </field>
+        </record>
+    </data>
 </odoo>
