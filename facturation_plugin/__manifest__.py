@@ -12,7 +12,7 @@
 
     'category': 'Tools',
 
-    'version': '1.14',
+    'version': '1.15',
 
     # any module necessary for this one to work correctly
     'depends': ['account', 'sale', 'sale_management'],
