@@ -12,10 +12,10 @@
 
     'category': 'Tools',
 
-    'version': '1.9',
+    'version': '1.10',
 
     # any module necessary for this one to work correctly
-    'depends': ['account', 'sale'],
+    'depends': ['account', 'sale', 'sale_management'],
 
     # always loaded
     'data': [
