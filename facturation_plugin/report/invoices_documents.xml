@@ -75,7 +75,7 @@
 
 		<template id="sale_order_report_inherited" inherit_id="sale.report_saleorder_document">
 
-		<span t-field="doc.m_sage_number" position="replace">
+		<span t-field="doc.name" position="replace">
 			<span t-if="doc.m_sage_number" t-esc="doc.m_sage_number"/>
 			<span t-else="" t-field="doc.name"/>
 		</span>
