@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        <record id="view_order_sale_form_inherited" model="ir.ui.view">
+            <field name="name">Sale Order Form Extension</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <field name="validity_date" position="before">
+                    <field name="m_sage_number" attrs="{'readonly': [('state', 'in', ('sale', 'done','cancel'))]}"/>
+                </field>
+
+            </field>
+        </record>
+
+
+        <record id="view_invoice_form_inherited" model="ir.ui.view">
+            <field name="name">Invoice Form Extension</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+
+                <field name="date_invoice" position="before">
+                    <field name="m_sage_number" attrs="{'readonly':[('state','!=','draft')]}"/>
+                </field>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

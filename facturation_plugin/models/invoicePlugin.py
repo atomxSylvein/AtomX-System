@@ -2,13 +2,11 @@ from odoo import models, fields, api
 
 class InvoicePlugin(models.Model):
 
-	"""This class extends Project class and provides implements the projects statuses
+	"""This class extends Invoice class and provides sage invoice number (for older invoices)
 	
 	Attributes:
-	    m_description (str): A manual description about the project
-	    m_typologie (selection): Describe the type of business
+	    m_sage_number (str): Invoice Sage number
 	"""
 	
 	_inherit = 'account.invoice'
-	m_description = fields.Text(string="Description du projet")
-	m_typology = fields.Selection(	[('4', 'Services Développement'), ('1', 'Services Intégration ServiceNow'), ('191', 'Services Intégration Odoo'), ('0', 'Autres')], string="Business Unit Service")
+	m_sage_number = fields.Char(string="Sage N°")
