@@ -7,7 +7,7 @@
             <field name="arch" type="xml">
 
                 <field name="validity_date" position="before">
-                    <field name="m_sage_number"/>
+                    <field name="m_sage_number" attrs="{'readonly': [('state', 'in', ('sale', 'done','cancel'))]}"/>
                 </field>
 
             </field>
@@ -21,7 +21,7 @@
             <field name="arch" type="xml">
 
                 <field name="date_invoice" position="before">
-                    <field name="m_sage_number"/>
+                    <field name="m_sage_number" attrs="{'readonly':[('state','!=','draft')]}"/>
                 </field>
 
             </field>
