@@ -76,6 +76,11 @@
 
       		<p t-if="o.reference" position="replace"/>
       		
+      		<span t-field="o.fiscal_position_id.note" position="replace">
+      			<span t-if="o.partner_id.lang == 'fr_FR'">Exonération de TVA selon les articles 262 ter I (pour les produits) et/ou 283-2 (pour les services) du CGI</span>
+      			<span t-else="" t-field="o.fiscal_position_id.note"/>
+      		</span>
+
 		</template>
 
 		<template id="sale_order_report_inherited" inherit_id="sale.report_saleorder_document">
